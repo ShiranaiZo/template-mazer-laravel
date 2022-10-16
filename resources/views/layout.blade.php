@@ -3,12 +3,12 @@
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Vertical Navbar - Mazer Admin Dashboard</title>
+        <title>@yield('title')</title>
 
-        <link rel="stylesheet" href="assets/css/main/app.css">
+        <link rel="stylesheet" href="{{asset('assets/css/main/app.css')}}">
 
-        <link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/x-icon">
-        <link rel="shortcut icon" href="assets/images/logo/favicon.png" type="image/png">
+        <link rel="shortcut icon" href=" {{asset('assets/images/logo/favicon.svg')}}" type="image/x-icon">
+        <link rel="shortcut icon" href=" {{asset('assets/images/logo/favicon.png')}}" type="image/png">
 
         @yield('css')
     </head>
@@ -20,7 +20,7 @@
                     <div class="sidebar-header position-relative">
                         <div class="d-flex justify-content-between align-items-center">
                             <div class="logo">
-                                <a href="index.html"><img src="assets/images/logo/logo.svg" alt="Logo" srcset=""></a>
+                                <a href="index.html"><img src="{{asset('assets/images/logo/logo.svg')}}" alt="Logo" srcset=""></a>
                             </div>
 
                             <div class="theme-toggle d-flex gap-2  align-items-center mt-2">
@@ -71,8 +71,8 @@
             </div>
         </div>
 
-        <script src="assets/js/bootstrap.js"></script>
-        <script src="assets/js/app.js"></script>
+        <script src="{{asset('assets/js/bootstrap.js')}}"></script>
+        <script src="{{asset('assets/js/app.js')}}"></script>
 
         @yield('js')
     </body>

@@ -1,5 +1,7 @@
 @extends('layout')
 
+@section('title', 'Dashboard')
+
 @section('content')
     <div class="page-title">
         <div class="row">
