@@ -11,6 +11,16 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/dashboard', function () {
     return view('index');
 });
+
+// Route::group(['middleware' => ['auth']], function() {
+	//super admin
+    // Route::group(['middleware' => ['role:1']], function() {
+		// *****************CRUD Users********************
+			Route::resource('users', 'UserController');
+	// });
+
+
+// });
