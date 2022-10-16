@@ -7,8 +7,9 @@
 
         <link rel="stylesheet" href="{{asset('assets/css/main/app.css')}}">
 
-        <link rel="shortcut icon" href=" {{asset('assets/images/logo/favicon.svg')}}" type="image/x-icon">
-        <link rel="shortcut icon" href=" {{asset('assets/images/logo/favicon.png')}}" type="image/png">
+        <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.svg')}}" type="image/x-icon">
+        <link rel="shortcut icon" href="{{asset('assets/images/logo/favicon.png')}}" type="image/png">
+        <link rel="stylesheet" href="{{asset('assets/extensions/@fortawesome/fontawesome-free/css/all.min.css')}}">
 
         @yield('css')
     </head>
@@ -61,9 +62,17 @@
                             <div class="float-start">
                                 <p>2021 &copy; Mazer</p>
                             </div>
+
                             <div class="float-end">
-                                <p>Crafted with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span>
-                                    by <a href="https://ahmadsaugi.com">Saugi</a></p>
+                                <p>Crafted with <span class="text-danger"><i class="bi bi-heart-fill icon-mid"></i></span> by <a href="https://ahmadsaugi.com" target="_blank">Saugi</a></p>
+                            </div>
+
+                            <div class="float-end mx-2">
+                                <p>|</p>
+                            </div>
+
+                            <div class="float-end">
+                                <p>Modified with <span class="text-info"><i class="fas fa-hand-peace"></i></span> by <a href="https://www.instagram.com/yuuttt_/" target="_blank">Yuta</a></p>
                             </div>
                         </div>
                     </footer>
