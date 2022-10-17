@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $results['users'] = User::all();
+        $results['users'] = User::latest()->get();
 
         return view('users.index', $results);
     }
@@ -26,7 +26,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view("users.create");
     }
 
     /**
@@ -37,7 +37,23 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'role' => 'required',
+            'email'=>'required|unique:users,email,NULL,id,deleted_at,NULL|email:rfc,filter',
+            'name'=>'required',
+            'username'=>'required|without_spaces|unique:users,username,NULL,id,deleted_at,NULL',
+            'password'=>'required|without_spaces|min:8',
+        ]);
+
+        $data = $request->except('_method', '_token');
+
+        if($request->get('password') != ''){
+            $data['password'] = bcrypt($request->get('password'));
+        }
+
+        $user = User::create($data);
+
+        return redirect()->route('users.index')->with('success', 'User Saved!');
     }
 
     /**

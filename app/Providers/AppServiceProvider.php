@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
+use Validator;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -23,6 +24,13 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        Validator::extend('without_spaces', function($attr, $value){
+            return preg_match('/^\S*$/u', $value);
+        });
+
+        Validator::replacer('without_spaces', function ($message, $attribute, $rule, $parameters) {
+            $newMessage =  'The '. $attribute . ' cannot contain spaces.';
+            return str_replace($message, $newMessage, $message);
+        });
     }
 }

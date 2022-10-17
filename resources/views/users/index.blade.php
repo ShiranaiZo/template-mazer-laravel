@@ -4,10 +4,17 @@
 
 @section('content')
     <section class="section">
+        @if (session('success'))
+            <div class="alert alert-success alert-dismissible show fade">
+                <i class="bi bi-check-circle"></i> {{session('success')}}
+                <button type="button" class="btn-close btn-close-session" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+        @endif
+
         <div class="card">
             <div class="card-header">
                 <div class="float-start">
-                    <a href="#" class="btn icon btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add">
+                    <a href="{{ url('users/create') }}" class="btn icon btn-success" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add">
                         <i class="bi bi-plus-circle"></i>
                     </a>
                 </div>
@@ -33,7 +40,7 @@
                                 <td>{{ $user->name }}</td>
                                 <td>{{ $user->username }}</td>
                                 <td>{{ $user->email }}</td>
-                                <td>{{ config('custom.role.'.$user->role) }}</td>
+                                <td>{{ config('custom.roles.'.$user->role) }}</td>
                                 <td>
                                     <div class="buttons">
                                         <a href="#" class="btn icon btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
@@ -56,9 +63,6 @@
 @endsection
 
 @section('js')
-    <script src="{{ asset("assets/extensions/datatable/datatables.min.js") }}"></script>
-    <script src="assets/js/pages/datatables.js"></script>
-
     <script>
         // Init Datatable
         $("#table1").DataTable();
