@@ -53,7 +53,7 @@ class UserController extends Controller
 
         $user = User::create($data);
 
-        return redirect()->route('users.index')->with('success', 'User Saved!');
+        return redirect('users')->with('success', 'User Saved!');
     }
 
     /**
@@ -105,7 +105,7 @@ class UserController extends Controller
 
         $user = User::find($id)->update($data);
 
-        return redirect()->route('users.index')->with('success', 'User Updated!');
+        return redirect('users')->with('success', 'User Updated!');
     }
 
     /**
@@ -116,6 +116,8 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $user = User::find($id)->delete();
+
+        return redirect()->back()->with('success', 'User Removed!');
     }
 }

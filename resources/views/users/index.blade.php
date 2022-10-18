@@ -21,7 +21,7 @@
             </div>
 
             <div class="card-body">
-                <table class="table" id="table1">
+                <table class="table" id="table_users">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -43,13 +43,13 @@
                                 <td>{{ config('custom.roles.'.$user->role) }}</td>
                                 <td>
                                     <div class="buttons">
-                                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn icon btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
+                                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn icon btn-primary tooltip-class" data-bs-placement="left" title="Edit">
                                             <i class="bi bi-pencil"></i>
                                         </a>
 
-                                        <a href="#" class="btn icon btn-danger" data-bs-toggle="tooltip" data-bs-placement="right" title="Remove">
+                                        <button type="button" class="btn icon btn-danger tooltip-class" data-bs-placement="right" title="Remove" data-bs-toggle="modal" data-bs-target="#modal_remove" onclick="modalRemove('{{ url('users/'.$user->id) }}')">
                                             <i class="bi bi-trash-fill"></i>
-                                        </a>
+                                        </button>
                                     </div>
                                 </td>
                             </tr>
@@ -58,21 +58,64 @@
                 </table>
             </div>
         </div>
-
     </section>
+
+    {{-- Modal Remove--}}
+        <div class="modal fade text-left" id="modal_remove" role="dialog" aria-labelledby="myModalLabel120" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable" role="document">
+                <div class="modal-content">
+                    <div class="modal-header bg-danger">
+                        <h5 class="modal-title white" id="myModalLabel120">Confirmation</h5>
+
+                        <button type="button" class="close" data-bs-dismiss="modal"aria-label="Close">
+                            <i data-feather="x"></i>
+                        </button>
+                    </div>
+
+                    <div class="modal-body">
+                        Are you sure want to remove this data?
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-light-secondary" data-bs-dismiss="modal">
+                            <i class="bx bx-x d-block d-sm-none"></i>
+                            <span class="d-none d-sm-block">No</span>
+                        </button>
+
+                        <form action="" method="post" id="form_delete_user">
+                            @method("DELETE")
+                            @csrf
+
+                            <button type="submit" class="btn btn-danger ml-1" data-bs-dismiss="modal">
+                                <i class="bx bx-check d-block d-sm-none"></i>
+                                <span class="d-none d-sm-block">Yes</span>
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{-- Modal Remove --}}
 @endsection
 
 @section('js')
     <script>
-        // Init Datatable
-        $("#table1").DataTable();
+        $(document).ready(function () {
+            // Init Datatable
+            $("#table_users").DataTable();
+		});
 
         // Init Tooltip
         document.addEventListener('DOMContentLoaded', function () {
-            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('#table_users .tooltip-class'))
             var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
                 return new bootstrap.Tooltip(tooltipTriggerEl)
             })
         }, false);
+
+        // Modal Remove
+        function modalRemove(url) {
+            $('#form_delete_user').attr("action", url)
+        }
     </script>
 @endsection
