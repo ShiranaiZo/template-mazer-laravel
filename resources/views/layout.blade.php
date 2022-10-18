@@ -103,6 +103,12 @@
                     $('.btn-close-session').trigger('click')
                 }, 5000);
             @endif
+
+            // Function for prevent double click
+            function preventDoubleClick(id_form, id_button){
+                $('#'+id_button).attr('disabled', true)
+                $('#'+id_form).submit()
+            }
         </script>
 
         @yield('js')

@@ -43,7 +43,7 @@
                                 <td>{{ config('custom.roles.'.$user->role) }}</td>
                                 <td>
                                     <div class="buttons">
-                                        <a href="#" class="btn icon btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
+                                        <a href="{{ url('users/'.$user->id.'/edit') }}" class="btn icon btn-primary" data-bs-toggle="tooltip" data-bs-placement="left" title="Edit">
                                             <i class="bi bi-pencil"></i>
                                         </a>
 
