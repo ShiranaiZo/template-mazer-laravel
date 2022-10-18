@@ -11,16 +11,22 @@
 |
 */
 
-Route::get('/dashboard', function () {
-    return view('index');
-});
+Route::get('', 'LoginController@checkLogin');
+Route::post('login', 'LoginController@login');
+Route::get('logout', 'LoginController@logout');
 
-// Route::group(['middleware' => ['auth']], function() {
+Route::get('login', function () {
+    return view('login');
+})->name('login');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('dashboard', function () {
+        return view('index');
+    });
+
 	//super admin
-    // Route::group(['middleware' => ['role:1']], function() {
+    Route::group(['middleware' => ['roles:1']], function() {
 		// *****************CRUD Users********************
 			Route::resource('users', 'UserController');
-	// });
-
-
-// });
+	});
+});
