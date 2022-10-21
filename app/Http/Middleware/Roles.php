@@ -15,7 +15,7 @@ class Roles
      */
     public function handle($request, Closure $next, $roles)
     {
-        if(\Auth::user()->roles != $roles){
+        if(\Auth::user()->role != $roles){
             return redirect('login');
         }
 
